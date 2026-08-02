@@ -1,0 +1,46 @@
+generated: '2026-08-02'
+method: probed
+source: live GET probes of /.well-known/* on every Shiftsmart host
+note: >-
+  No /.well-known/ document was found on any Shiftsmart host. Every probe is recorded
+  below with its observed HTTP status. api.shiftsmart.com answers with the FeathersJS
+  JSON NotFound envelope; shiftsmart.com (Webflow) answers with an HTML page reading
+  "Invalid .well-known request". Because zero documents were discovered, no WellKnown,
+  SecurityTxt or APICatalog pointer is wired in apis.yml — recording absence, not a
+  discovery surface.
+hosts:
+- host: https://api.shiftsmart.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://shiftsmart.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+x-evidence:
+  fetched: '2026-08-02'
+  documents_found: 0
+  security_txt: false
+  agent_card: false

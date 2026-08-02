@@ -1,0 +1,63 @@
+generated: '2026-08-02'
+method: probed
+source: live probes of https://api.shiftsmart.com
+note: >-
+  Shiftsmart publishes no API documentation, so nothing here was searched from docs
+  and nothing was derived from a spec. Only conventions directly observed in live
+  responses are recorded as confirmed; everything else is explicitly marked unknown
+  rather than assumed from the framework default.
+transport:
+  protocol: REST over HTTPS
+  content_type: application/json; charset=utf-8
+  tls: TLSv1.3
+  framework: FeathersJS
+  framework_evidence: >-
+    Error bodies match the @feathersjs/errors envelope exactly, and the Shiftsmart
+    GitHub organization (github.com/shiftsmartinc) maintains feathers, feathers-mongoose,
+    feathers-authentication-management and feathers-opentelemetry.
+  service_paths: >-
+    Services are mounted at the host root as flat collection paths (e.g. /shifts);
+    no version prefix was observed.
+authentication:
+  style: bearer JWT issued by POST /authentication
+  confirmed: true
+  see: authentication/shiftsmart-authentication.yml
+error_envelope:
+  style: feathers-errors
+  rfc9457: false
+  confirmed: true
+  see: errors/shiftsmart-problem-types.yml
+idempotency:
+  supported: unknown
+  documented: false
+  note: >-
+    No idempotency key header or parameter is documented, and none could be observed
+    against an auth-gated API. No Idempotency pointer is wired in apis.yml.
+pagination:
+  style: unknown
+  documented: false
+  note: >-
+    FeathersJS conventionally uses $limit/$skip with a {total,limit,skip,data} envelope,
+    but every collection endpoint is auth-gated so this was NOT observed for Shiftsmart
+    and is not asserted here.
+versioning:
+  scheme: none observed
+  documented: false
+  note: No version segment appears in any observed path.
+rate_limiting:
+  signaled: unknown
+  documented: false
+  note: No RateLimit or X-RateLimit headers were observed on unauthenticated responses.
+request_tracing:
+  request_id_header: unknown
+  documented: false
+health:
+  endpoint: https://api.shiftsmart.com/health
+  status: 200
+  body: '{"status":200}'
+  authentication_required: false
+  confirmed: true
+x-evidence:
+  fetched: '2026-08-02'
+  host: api.shiftsmart.com
+  public_documentation: false

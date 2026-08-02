@@ -1,18 +1,58 @@
 aid: shiftsmart
 name: Shiftsmart
-description: 'Shiftsmart is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Shiftsmart is a workforce management and flexible-labor platform that
+  connects enterprises and government agencies with a community of independent workers
+  across more than 50 countries. The platform covers the full labor lifecycle — sourcing
+  workers from profiles carrying credentials and performance metrics, onboarding and
+  training them into custom labor pools, building optimized schedules from rules and
+  templates, dispatching shifts by in-app notification or SMS, tracking GPS-verified
+  attendance and productivity, and paying workers within 24 hours via real-time debit
+  transfers and payroll integrations. Shiftsmart also runs location-level audits, mystery
+  shopping and compliance programs on top of the same labor network. The platform is
+  delivered through worker and manager mobile applications backed by a private REST
+  API at api.shiftsmart.com; Shiftsmart publishes no public developer portal, API reference,
+  or machine-readable specification.'
 url: https://raw.githubusercontent.com/api-evangelist/shiftsmart/refs/heads/main/apis.yml
+image: https://cdn.prod.website-files.com/602a3f3e454f14956d14543a/6660192ccef2360b51721359_Shiftsmart%20Webclip.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
-apis: []
+- Workforce Management
+- Staffing
+- Scheduling
+- Labor Marketplace
+- Human Resources
+- Gig Economy
+- Workforce
+- Payments
+- Field Services
+apis:
+- aid: shiftsmart:shiftsmart-platform-api
+  name: Shiftsmart Platform API
+  description: 'The private REST API backing the Shiftsmart worker and manager applications.
+    Probing confirms a live FeathersJS service at api.shiftsmart.com: an unauthenticated
+    GET /health returns 200, service collections such as /shifts return 401 NotAuthenticated,
+    and POST /authentication returns a FeathersJS authentication error demanding a
+    `strategy`. No OpenAPI, Swagger, GraphQL, AsyncAPI or MCP surface is published
+    at any Shiftsmart host, and there is no public developer portal or API reference,
+    so this API is not generally available to third-party developers.'
+  humanURL: https://shiftsmart.com/platform
+  baseURL: https://api.shiftsmart.com
+  tags:
+  - Workforce Management
+  - Scheduling
+  - Staffing
+  properties:
+  - type: Authentication
+    url: authentication/shiftsmart-authentication.yml
+  - type: ErrorCatalog
+    url: errors/shiftsmart-problem-types.yml
+  - type: Conventions
+    url: conventions/shiftsmart-conventions.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +60,37 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://shiftsmart.com/
+- type: Blog
+  url: https://shiftsmart.com/blog
+- type: Support
+  url: https://help.shiftsmart.com
+- type: GitHubOrganization
+  url: https://github.com/shiftsmartinc
+- type: PrivacyPolicy
+  url: https://shiftsmart.com/privacy-policy
+- type: TermsOfService
+  url: https://shiftsmart.com/employer-terms-of-service
+- type: PartnerTermsOfService
+  url: https://shiftsmart.com/partner-terms-of-service
+- type: News
+  url: https://shiftsmart.com/news
+- type: Careers
+  url: https://shiftsmart.com/careers
+- type: Contact
+  url: https://shiftsmart.com/contact
+- type: Packages
+  url: packages/shiftsmart-packages.yml
+- type: LLMsTxt
+  url: llms/shiftsmart-llms.txt
+- type: Conformance
+  url: conformance/shiftsmart-conformance.yml
+- type: DomainSecurity
+  url: security/shiftsmart-domain-security.yml
+- type: SecondaryMarket
   url: https://forgeglobal.com/shiftsmart_stock/
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v1

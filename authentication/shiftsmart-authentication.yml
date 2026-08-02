@@ -1,0 +1,57 @@
+generated: '2026-08-02'
+method: probed
+source: https://api.shiftsmart.com/authentication
+note: >-
+  Shiftsmart publishes no OpenAPI, so no securitySchemes could be derived. This profile
+  is built entirely from observed live responses at api.shiftsmart.com. Shiftsmart
+  publishes no public authentication documentation; third-party developers cannot
+  self-serve credentials.
+summary:
+  types:
+  - http
+  documented: false
+  public_signup: false
+  spec_derived: false
+  framework: FeathersJS
+schemes:
+- name: feathersAuthentication
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  endpoint: https://api.shiftsmart.com/authentication
+  method: POST
+  requires:
+  - strategy
+  confidence: medium
+  note: >-
+    POST /authentication with an empty JSON body returns 401 NotAuthenticated with
+    the message "Invalid authentication information (no `strategy` set)" — the FeathersJS
+    authentication service contract, which issues a JWT access token in exchange for
+    a named strategy (commonly `local` or `jwt`). The exact strategies Shiftsmart
+    enables are not published and were not probed further.
+observations:
+- path: /authentication
+  method: POST
+  status: 401
+  body: '{"name":"NotAuthenticated","message":"Invalid authentication information (no
+    `strategy` set)","code":401,"className":"not-authenticated"}'
+- path: /authentication
+  method: GET
+  status: 405
+  body: '{"name":"MethodNotAllowed","message":"Method `find` is not supported by this
+    endpoint.","code":405,"className":"method-not-allowed"}'
+- path: /shifts
+  method: GET
+  status: 401
+  body: '{"name":"NotAuthenticated","message":"Not authenticated","code":401,"className":"not-authenticated"}'
+- path: /health
+  method: GET
+  status: 200
+  body: '{"status":200}'
+  note: the only unauthenticated endpoint discovered
+oauth2: false
+openid_connect: false
+api_keys_documented: false
+x-evidence:
+  fetched: '2026-08-02'
+  host: api.shiftsmart.com

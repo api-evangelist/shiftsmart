@@ -1,0 +1,67 @@
+generated: '2026-08-02'
+method: searched
+source: npm, PyPI, RubyGems, Packagist, crates.io, NuGet, github.com/shiftsmartinc
+note: >-
+  Shiftsmart ships NO API client library in any registry. The two packages below are
+  genuine first-party publications under the @shiftsmartinc npm scope, but both are
+  internal engineering tooling — neither is a client for the Shiftsmart Platform API.
+  Because no SDK exists, no `SDKs` pointer is wired in apis.yml (only `Packages`).
+sdk_count: 0
+api_clients: []
+packages:
+- language: javascript
+  registry: npm
+  name: '@shiftsmartinc/react-native-zendesk-support'
+  url: https://www.npmjs.com/package/@shiftsmartinc/react-native-zendesk-support
+  install: npm install @shiftsmartinc/react-native-zendesk-support
+  version: 3.0.0
+  license: MIT
+  last_published: '2023-04-14'
+  official: true
+  api_client: false
+  description: React Native wrapper around Zendesk Support; a fork of synapsestudios/react-native-zendesk-support
+    republished under the Shiftsmart scope for their mobile apps.
+- language: javascript
+  registry: npm
+  name: '@shiftsmartinc/dotfiles'
+  url: https://www.npmjs.com/package/@shiftsmartinc/dotfiles
+  install: npm install @shiftsmartinc/dotfiles
+  version: 0.0.5
+  license: UNLICENSED
+  last_published: '2023-02-24'
+  official: true
+  api_client: false
+  description: Dotfiles for consistent application config across Shiftsmart repositories.
+registries_searched:
+- registry: npm
+  query: shiftsmart / shiftsmartinc
+  result: 2 first-party packages, 0 API clients
+- registry: pypi
+  query: shiftsmart
+  result: 404 not found
+- registry: rubygems
+  query: shiftsmart
+  result: empty
+- registry: packagist
+  query: shiftsmart
+  result: no first-party match
+- registry: crates.io
+  query: shiftsmart
+  result: 0 crates
+- registry: nuget
+  query: shiftsmart
+  result: 0 hits
+- registry: maven-central
+  query: shiftsmart
+  result: no first-party match
+open_source:
+  org: https://github.com/shiftsmartinc
+  note: >-
+    The public GitHub organization holds forks and internal tooling — feathers,
+    feathers-mongoose, feathers-authentication-management, feathers-opentelemetry,
+    schema2typebox, surveyjs-react-native, braze-expo-plugin, orient-express — which
+    corroborate the FeathersJS stack behind api.shiftsmart.com but contain no client
+    library or API specification for the Shiftsmart Platform API.
+x-evidence:
+  fetched: '2026-08-02'
+  official_sdks_found: 0

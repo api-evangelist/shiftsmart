@@ -1,0 +1,61 @@
+generated: '2026-08-02'
+method: probed
+source: live probes of https://api.shiftsmart.com
+format: feathers-errors
+rfc9457: false
+note: >-
+  Shiftsmart publishes no OpenAPI and no public error reference, so no catalog could
+  be derived from a spec or searched from docs. Every entry below was observed verbatim
+  in a live response from api.shiftsmart.com. The envelope is the FeathersJS
+  @feathersjs/errors shape — a JSON object with `name`, `message`, `code` and
+  `className`, plus an optional `data` object — not RFC 9457 application/problem+json.
+envelope:
+  content_type: application/json; charset=utf-8
+  fields:
+  - name: name
+    description: PascalCase error class name (NotFound, NotAuthenticated, MethodNotAllowed)
+  - name: message
+    description: Human-readable error message
+  - name: code
+    description: Integer HTTP status code, repeated in the body
+  - name: className
+    description: kebab-case error class slug (not-found, not-authenticated, method-not-allowed)
+  - name: data
+    description: Optional object carrying error context; on 404 it carries the requested url
+problems:
+- status: 404
+  name: NotFound
+  class_name: not-found
+  title: Page not found
+  observed_body: '{"name":"NotFound","message":"Page not found","code":404,"className":"not-found","data":{"url":"/openapi.json"}}'
+  remediation: The requested path is not a registered FeathersJS service. Echoes the
+    requested path back in data.url.
+- status: 401
+  name: NotAuthenticated
+  class_name: not-authenticated
+  title: Not authenticated
+  observed_body: '{"name":"NotAuthenticated","message":"Not authenticated","code":401,"className":"not-authenticated"}'
+  remediation: Obtain a JWT via POST /authentication and present it as a bearer token.
+  source_observation: GET /shifts
+- status: 401
+  name: NotAuthenticated
+  class_name: not-authenticated
+  title: Invalid authentication information (no `strategy` set)
+  observed_body: '{"name":"NotAuthenticated","message":"Invalid authentication information
+    (no `strategy` set)","code":401,"className":"not-authenticated"}'
+  remediation: Include a `strategy` field in the POST /authentication request body.
+  source_observation: POST /authentication
+- status: 405
+  name: MethodNotAllowed
+  class_name: method-not-allowed
+  title: Method `find` is not supported by this endpoint
+  observed_body: '{"name":"MethodNotAllowed","message":"Method `find` is not supported
+    by this endpoint.","code":405,"className":"method-not-allowed"}'
+  remediation: The FeathersJS service does not implement this method; use the supported
+    verb (POST for /authentication).
+  source_observation: GET /authentication
+x-evidence:
+  fetched: '2026-08-02'
+  host: api.shiftsmart.com
+  problems_observed: 4
+  derived_from_spec: false

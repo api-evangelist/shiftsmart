@@ -1,0 +1,73 @@
+generated: '2026-08-02'
+method: probed
+source: live probes of https://api.shiftsmart.com and https://shiftsmart.com
+note: >-
+  No OpenAPI, vocabulary or tag artifacts exist for Shiftsmart, and Shiftsmart publishes
+  no compliance or certification page, so nothing here is derived from a spec or claimed
+  by the provider. Each entry records what live probing could and could not confirm.
+  Because no compliance program is published, no Compliance pointer is wired in apis.yml.
+standards:
+- id: openapi
+  conforms: false
+  evidence: 'No OpenAPI at any host: /openapi.json, /openapi.yaml, /swagger.json,
+    /v1/openapi.json, /api-docs, /docs and /redoc on api.shiftsmart.com all return
+    404.'
+- id: graphql
+  conforms: false
+  evidence: https://api.shiftsmart.com/graphql returns 404.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface is documented or discoverable.
+- id: mcp
+  conforms: false
+  evidence: No hosted MCP server discovered; no MCP endpoint documented.
+- id: a2a-agent-card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+    both api.shiftsmart.com and shiftsmart.com.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use the FeathersJS envelope (name/message/code/className) with content-type
+    application/json, not application/problem+json.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on all hosts.
+- id: rfc8615-well-known
+  conforms: false
+  evidence: No /.well-known/ document was served by any host.
+- id: oauth2
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 404; authentication is
+    a FeathersJS JWT strategy endpoint, not an OAuth 2.0 authorization server.
+- id: openid-connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on all hosts.
+- id: tls-1-3
+  conforms: true
+  evidence: 'TLSv1.3 negotiated on both shiftsmart.com and api.shiftsmart.com (see
+    security/shiftsmart-domain-security.yml).'
+- id: hsts
+  conforms: partial
+  evidence: shiftsmart.com sets HSTS with max-age 31536000; api.shiftsmart.com sets
+    no HSTS header.
+- id: dmarc
+  conforms: true
+  evidence: shiftsmart.com publishes DMARC with policy reject, and SPF is present.
+- id: dnssec
+  conforms: false
+  evidence: shiftsmart.com is not DNSSEC-signed and publishes no CAA records.
+compliance_program:
+  published: false
+  certifications: []
+  trust_center: false
+  evidence: >-
+    No /security, /trust, /compliance, trust.shiftsmart.com or security.shiftsmart.com
+    page exists (probe-security-programs.py returned vdp=none trust=none), and neither
+    the homepage nor the platform page names SOC 2, ISO 27001, PCI DSS, HIPAA or
+    FedRAMP. A compliance@shiftsmart.com mailto is published in the site footer, but
+    it is a compliance contact rather than a certification or disclosure program.
+x-evidence:
+  fetched: '2026-08-02'
+  hosts_probed:
+  - api.shiftsmart.com
+  - shiftsmart.com
