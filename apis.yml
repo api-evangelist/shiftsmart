@@ -16,7 +16,7 @@ url: https://raw.githubusercontent.com/api-evangelist/shiftsmart/refs/heads/main
 image: https://cdn.prod.website-files.com/602a3f3e454f14956d14543a/6660192ccef2360b51721359_Shiftsmart%20Webclip.png
 x-type: company
 x-source: harvest:secondary-market
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
