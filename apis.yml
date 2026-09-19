@@ -53,6 +53,17 @@ tags:
 - Gig Economy
 - Workforce
 - Payments
+- Field Service
+tags_raw:
+- Company
+- Workforce Management
+- Staffing
+- Scheduling
+- Labor Marketplace
+- Human Resources
+- Gig Economy
+- Workforce
+- Payments
 - Field Services
 apis:
 - aid: shiftsmart:shiftsmart-platform-api
